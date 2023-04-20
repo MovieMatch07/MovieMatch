@@ -15,6 +15,8 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.suraj.moviematch.R
+import com.suraj.moviematch.Utils.Utils
+import com.suraj.moviematch.Utils.Utils.Companion.makeToast
 import org.w3c.dom.Text
 
 class CreateAccountActivity : AppCompatActivity() {
@@ -23,7 +25,7 @@ class CreateAccountActivity : AppCompatActivity() {
     private lateinit var edit_Email: EditText
     private lateinit var edit_Password: EditText
     private lateinit var btnCreateAccount: Button
-    private lateinit var txtlogin: TextView
+    private lateinit var txtHaveAccount: TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,38 +38,6 @@ class CreateAccountActivity : AppCompatActivity() {
 
     }
 
-    private fun initView() {
-
-        auth = Firebase.auth
-        edit_Email = findViewById(R.id.edit_email)
-        edit_Password = findViewById(R.id.edit_password)
-        btnCreateAccount = findViewById(R.id.btnCreateAccount)
-        txtlogin = findViewById(R.id.txtlogin)
-
-
-    }
-
-    private fun setUpListener() {
-        btnCreateAccount.setOnClickListener(View.OnClickListener {
-            if (edit_Email.text.toString().isEmpty() || edit_Password.text.toString().isEmpty()) {
-                Toast.makeText(this, "Enter Email or Password", Toast.LENGTH_SHORT).show()
-            } else
-                if (!isValidGmail(edit_Email.text.toString())) {
-                    Toast.makeText(this, "Invalid email", Toast.LENGTH_SHORT).show()
-                } else
-                    createAccount(edit_Email.text.toString(), edit_Password.text.toString())
-        })
-
-
-
-        txtlogin.setOnClickListener {
-            var intent = Intent(this@CreateAccountActivity,loginActivity :: class.java)
-            startActivity(intent)
-            finish()
-        }
-    }
-
-
     public override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
@@ -77,27 +47,58 @@ class CreateAccountActivity : AppCompatActivity() {
         }
     }
 
+
+    private fun initView() {
+
+        auth = Firebase.auth
+        edit_Email = findViewById(R.id.edit_email)
+        edit_Password = findViewById(R.id.edit_password)
+        btnCreateAccount = findViewById(R.id.btnCreateAccount)
+        txtHaveAccount = findViewById(R.id.txtHaveAccount)
+
+    }
+
+
+    private fun setUpListener() {
+
+        btnCreateAccount.setOnClickListener {
+
+            when {
+
+                edit_Email.text.toString().isEmpty() -> makeToast(baseContext, "Enter Email")
+
+                edit_Password.text.toString().isEmpty() -> makeToast(baseContext, "Enter Password")
+
+                !Utils.isValidGmail(edit_Email.text.toString()) -> makeToast(baseContext, "Invalid email")
+
+                else -> createAccount(edit_Email.text.toString(), edit_Password.text.toString())
+
+            }
+
+        }
+
+        txtHaveAccount.setOnClickListener {
+            var intent = Intent(this@CreateAccountActivity, loginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+    }
+
     private fun createAccount(email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    Log.d(ContentValues.TAG, "createUserWithEmail:success")
-                    Toast.makeText(this, "Create Account successfully", Toast.LENGTH_SHORT).show()
+                    makeToast(baseContext, "Create Account successfully")
                     val user = auth.currentUser
                     updateUI(user)
                 } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w(ContentValues.TAG, "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(
-                        baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    //updateUI(null)
+                    makeToast(baseContext, "Authentication failed.")
                 }
             }
-
     }
+
 
     private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
@@ -106,10 +107,4 @@ class CreateAccountActivity : AppCompatActivity() {
             finish()
         }
     }
-
-    fun isValidGmail(email: String): Boolean {
-        val regex = Regex("^[a-zA-Z0-9._%+-]+@gmail.com$")
-        return regex.matches(email)
-    }
-
 }
