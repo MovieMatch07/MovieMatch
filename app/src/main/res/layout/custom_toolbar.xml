@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/purple"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.Toolbar
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/custom_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+        <!-- Navigation button -->
+        <ImageButton
+            android:id="@+id/btn_navigation"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/baseline_menu_24"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:scaleType="centerCrop"
+            android:layout_gravity="start"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_gravity="left"/>
+
+        <!-- Menu button -->
+        <ImageButton
+            android:id="@+id/btn_menu"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="centerCrop"
+            android:padding="5dp"
+            android:src="@drawable/baseline_search_24"
+            android:layout_gravity="end"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
+
+    </androidx.appcompat.widget.Toolbar>
+<HorizontalScrollView
+    android:orientation="horizontal"
+    android:background="@color/purple"
+    app:layout_constraintTop_toBottomOf="@id/custom_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/txt_filterAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  All  "
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:background="@color/white"
+            android:textColor="@color/purple"/>
+
+        <TextView
+            android:id="@+id/txt_filterTelugu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  Telugu  "
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+        <TextView
+            android:id="@+id/txt_filterAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  Action  "
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/txt_filterComedy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  Comedy  "
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/txt_filterHorror"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  Horror  "
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/txt_filterThriller"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  Thriller  "
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/txt_filterAdventure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  Adventure  "
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/txt_filterAnimation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  Animation  "
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+</HorizontalScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,21 +23,13 @@
             </intent-filter>
         </activity>
 
-
         <activity
             android:name=".activity.CreateAccountActivity"
             android:exported="true"/>
 
-
         <activity
             android:name=".activity.HomeActivity"
             android:exported="true" />
-
-
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"/>
-
 
     </application>
 
