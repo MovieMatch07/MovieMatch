@@ -1,23 +1,10 @@
 package com.suraj.moviematch.data
 
 
-val jsonAllMovies = """
+val jsonTeluguMovies = """
 {
   "movies": [
-    {
-      "movieUrl": "https://firebasestorage.googleapis.com/v0/b/netflix-6cfee.appspot.com/o/Movies%2FKhuda%20Haafiz%20.mkv?alt=media&token=7937a70f-f536-4da0-8de2-17f150c76156",
-      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/netflix-6cfee.appspot.com/o/Images%2FKhudaHaafiz.jpg?alt=media&token=c416a9a2-7f94-425f-a176-8da5bb00991d",
-      "movieName": "Khuda Haafiz",
-      "categories": ["Action", "Adventure"],
-      "length": "120"
-    },
-     {
-      "movieUrl": "https://firebasestorage.googleapis.com/v0/b/netflix-6cfee.appspot.com/o/Movies%2Fdobaaraa.mkv?alt=media&token=7dfa1dd2-cab5-4de4-a802-8d9a7d70a26b",
-      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/netflix-6cfee.appspot.com/o/Images%2FDoBaaraa.jpg?alt=media&token=ada7ad42-9dc6-4e95-8424-8ed57104be7f",
-      "movieName": "Do Baaraa",
-      "categories": ["Drama", "Thriller"],
-      "length": "130"
-    },
+   
      {
       "movieUrl": "https://firebasestorage.googleapis.com/v0/b/netflix-6cfee.appspot.com/o/Movies%2FMonicaOMyDarling%20.mkv?alt=media&token=4ba6081e-721a-468b-b340-0439429d3125",
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/netflix-6cfee.appspot.com/o/Images%2FMOMD.jpg?alt=media&token=e7ef98b5-a8ca-4fa6-96ec-7ba6196d4f27",
@@ -204,6 +191,6 @@ val jsonAllMovies = """
 }
 """
 
-fun getAllMovieJsonData(): String {
-    return jsonAllMovies
+fun getTeluguMovieJsonData(): String {
+    return jsonTeluguMovies
 }
