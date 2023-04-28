@@ -1,5 +1,6 @@
 package com.suraj.moviematch.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -16,6 +17,7 @@ import com.suraj.moviematch.adapter.MovieAdapter
 import com.suraj.moviematch.data.Movie
 import com.suraj.moviematch.data.Movies
 import com.suraj.moviematch.data.getAllMovieJsonData
+import com.suraj.moviematch.data.getAnimationMovieJsonData
 import com.suraj.moviematch.data.getTeluguMovieJsonData
 
 class HomeActivity : AppCompatActivity() {
@@ -48,6 +50,7 @@ class HomeActivity : AppCompatActivity() {
 
 
         setOnCLick()
+        setUpListener()
 
 
     }
@@ -149,7 +152,7 @@ class HomeActivity : AppCompatActivity() {
                 ).movies as ArrayList<Movie>
 
                 val layoutManager =
-                    StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
+                    StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
                 rvHomeActivity.layoutManager = layoutManager
 
@@ -264,12 +267,12 @@ class HomeActivity : AppCompatActivity() {
 
             "Animation" -> {
                 movieList = gson.fromJson(
-                    getTeluguMovieJsonData(),
+                    getAnimationMovieJsonData(),
                     Movies::class.java
                 ).movies as ArrayList<Movie>
 
                 val layoutManager =
-                    StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL)
+                    StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
                 rvHomeActivity.layoutManager = layoutManager
 
@@ -334,29 +337,42 @@ class HomeActivity : AppCompatActivity() {
     private fun setBackgroundUnselected() {
 
         txt_filterAll.setTextColor(resources.getColor(R.color.white))
-        txt_filterAll.setBackgroundColor(resources.getColor(R.color.purple))
+        txt_filterAll.setBackgroundColor(resources.getColor(R.color.purpleLight))
 
         txt_filterTelugu.setTextColor(resources.getColor(R.color.white))
-        txt_filterTelugu.setBackgroundColor(resources.getColor(R.color.purple))
+        txt_filterTelugu.setBackgroundColor(resources.getColor(R.color.purpleLight))
 
         txt_filterAction.setTextColor(resources.getColor(R.color.white))
-        txt_filterAction.setBackgroundColor(resources.getColor(R.color.purple))
+        txt_filterAction.setBackgroundColor(resources.getColor(R.color.purpleLight))
 
         txt_filterComedy.setTextColor(resources.getColor(R.color.white))
-        txt_filterComedy.setBackgroundColor(resources.getColor(R.color.purple))
+        txt_filterComedy.setBackgroundColor(resources.getColor(R.color.purpleLight))
 
         txt_filterHorror.setTextColor(resources.getColor(R.color.white))
-        txt_filterHorror.setBackgroundColor(resources.getColor(R.color.purple))
+        txt_filterHorror.setBackgroundColor(resources.getColor(R.color.purpleLight))
 
         txt_filterThriller.setTextColor(resources.getColor(R.color.white))
-        txt_filterThriller.setBackgroundColor(resources.getColor(R.color.purple))
+        txt_filterThriller.setBackgroundColor(resources.getColor(R.color.purpleLight))
 
         txt_filterAdventure.setTextColor(resources.getColor(R.color.white))
-        txt_filterAdventure.setBackgroundColor(resources.getColor(R.color.purple))
+        txt_filterAdventure.setBackgroundColor(resources.getColor(R.color.purpleLight))
 
         txt_filterAnimation.setTextColor(resources.getColor(R.color.white))
-        txt_filterAnimation.setBackgroundColor(resources.getColor(R.color.purple))
+        txt_filterAnimation.setBackgroundColor(resources.getColor(R.color.purpleLight))
 
+    }
+
+
+    private fun setUpListener() {
+
+        movieAdapter.setOnClickListener = object : MovieAdapter.SetOnClickListener {
+            override fun onClick(movieUrl: String) {
+                val intent = Intent(this@HomeActivity, MovieDetailsActivity::class.java)
+                intent.putExtra("movieUrl", movieUrl)
+                startActivity(intent)
+                finish()
+            }
+        }
     }
 
 }
